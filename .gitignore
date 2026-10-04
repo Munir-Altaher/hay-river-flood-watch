@@ -1,4 +1,4 @@
-# Secrets - never upload
+﻿# Secrets - never upload
 .env
 
 # Python's private install and cache files
@@ -6,8 +6,8 @@ venv/
 __pycache__/
 
 # Big downloaded/generated files (12 GB of satellite data, rebuildable with the scripts)
-data/
-models/
+/data/
+/models/
 
 # outputs/ IS uploaded (small): results, blind-test lock files and the pitch script.
 # The repo is PUBLIC, so copyrighted Cabin Radio flood photos stay local only:
