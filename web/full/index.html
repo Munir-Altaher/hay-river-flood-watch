@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hay River Breakup Watch</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <h1>Hay River Breakup Watch</h1>
+    <p class="sub">River ice from RADARSAT Constellation Mission (RCM) + breakup flood-risk forecast</p>
+  </div>
+  <div class="controls">
+    <label>Spring
+      <select id="season"></select>
+    </label>
+    <button id="replay2022" class="btn">Replay 2022 flood</button>
+  </div>
+</header>
+
+<div class="notice" role="note">
+  Replay of historical data for a hackathon project. <strong>Not a live or official forecast.</strong>
+  In an emergency, follow the Town of Hay River and GNWT.
+</div>
+
+<section class="timebar" aria-label="Date">
+  <button id="play" class="btn" aria-label="Play">&#9654; Play</button>
+  <input id="day" type="range" min="0" max="0" value="0" aria-label="Day of spring">
+  <output id="dayLabel">&nbsp;</output>
+</section>
+
+<main class="layout">
+  <section class="mapcard card">
+    <div id="map" aria-label="Map of the Hay River corridor"></div>
+    <div class="maptoggles">
+      <label><input type="checkbox" id="showIce" checked> RCM river ice</label>
+      <label><input type="checkbox" id="showFlood" checked> Projected flood for forecast peak</label>
+    </div>
+  </section>
+
+  <aside class="side">
+    <section class="card" id="riskCard" aria-live="polite">
+      <h2>Breakup flood risk</h2>
+      <div id="riskBody"></div>
+    </section>
+
+    <section class="card" id="iceCard">
+      <h2>River ice from RCM</h2>
+      <div id="iceBody"></div>
+      <div id="profile" class="profile" aria-label="Ice type by km from the lake"></div>
+      <div class="legend" id="iceLegend"></div>
+    </section>
+  </aside>
+
+  <section class="card wide">
+    <h2>Forecast of the spring peak water level at the town gauge</h2>
+    <p class="hint">Each day's forecast uses only what was known that day, from a model that never saw this spring.</p>
+    <div class="chartbox tall"><canvas id="forecastChart"></canvas></div>
+  </section>
+
+  <section class="card half">
+    <h2>Estimated river ice thickness</h2>
+    <p class="hint">Stefan's equation from freezing degree-days (alpha 1.5; shaded = alpha 1.2&ndash;1.9). Grey = range of all winters.</p>
+    <div class="chartbox"><canvas id="thickChart"></canvas></div>
+  </section>
+
+  <section class="card half">
+    <h2>Spring thaw</h2>
+    <p class="hint">Thawing degree-days since March 1. Breakup at the town gauge typically comes at 49&ndash;87.</p>
+    <div class="chartbox"><canvas id="tddChart"></canvas></div>
+  </section>
+
+  <section class="card wide about">
+    <h2>How this works</h2>
+    <div id="about"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>Contains RADARSAT Constellation Mission data &copy; Government of Canada (2021&ndash;2026). RADARSAT is an official mark of the Canadian Space Agency.
+  The flood extent products are derived from Capella images with a system developed and operated by the Department of Natural Resources Canada. &copy; All rights reserved.
+  Gauge data: Water Survey of Canada (HYDAT). Climate: Environment and Climate Change Canada. Elevation: NRCan HRDEM.
+  Breakup history: GNWT (2025) Kátł&rsquo;odeh (Hay River) Flood Hazard Mapping Study. Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="../data/meta.js"></script>
+<script src="../data/map.js"></script>
+<script src="../data/seasons.js"></script>
+<script src="../data/forecasts.js"></script>
+<script src="../data/scenes.js"></script>
+<script src="../data/flood.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

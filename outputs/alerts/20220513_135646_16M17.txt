@@ -1,0 +1,11 @@
+NO FLOODED BUILDINGS DETECTED - Hay River, NWT
+Satellite radar image: Friday May 13, 2022 at 07:56 AM local time (2022-05-13 13:56 UTC)
+
+About 0.3 km2 of flooding was detected outside the normal river channel.
+0 of the 1 buildings visible in this image may have water on or next to them.
+(1681 buildings were outside this image and could not be checked.)
+
+Roads with water on them (may be impassable):
+  - Reserve Highway: about 78 m
+
+This is an automated estimate from satellite radar and can miss flooding or flag dry areas. Always follow official emergency instructions.

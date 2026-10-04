@@ -1,0 +1,41 @@
+FLOOD WARNING - Hay River, NWT
+Satellite radar image: Monday May 09, 2022 at 07:29 PM local time (2022-05-10 01:29 UTC)
+
+About 3.5 km2 of flooding was detected outside the normal river channel.
+206 of the 1636 buildings visible in this image may have water on or next to them.
+(46 buildings were outside this image and could not be checked.)
+
+Areas affected:
+  - New Town Hay River: 79 buildings
+  - Hay River (other areas): 63 buildings
+  - Old Town Hay River: 56 buildings
+  - Vale Island: 8 buildings
+
+Streets with the most affected buildings:
+  - McBryan Drive: 33
+  - Hay River Highway: 28
+  - Miron Drive: 14
+  - Capital Drive: 8
+  - Woodland Drive: 7
+  - Industrial Drive: 7
+  - 100 Avenue: 6
+  - Service Road: 6
+  - 102nd Avenue: 6
+  - 103rd Street: 5
+  - (plus 19 near roads without a name on the map)
+
+Roads with water on them (may be impassable):
+  - Hay River Highway: about 2,417 m
+  - Miron Drive: about 639 m
+  - McBryan Drive: about 439 m
+  - 100 Street: about 365 m
+  - 102nd Avenue: about 288 m
+  - Reserve Highway: about 230 m
+  - Fort Smith Highway: about 216 m
+  - Riverview Drive: about 183 m
+  - Service Road: about 173 m
+  - 106th Avenue: about 170 m
+
+What to do: if you are in these areas, move to higher ground, avoid driving through water, and follow instructions from the Town of Hay River and NWT emergency officials.
+
+This is an automated estimate from satellite radar and can miss flooding or flag dry areas. Always follow official emergency instructions.

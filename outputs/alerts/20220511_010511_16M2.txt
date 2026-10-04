@@ -1,0 +1,26 @@
+FLOOD WARNING - Hay River, NWT
+Satellite radar image: Tuesday May 10, 2022 at 07:05 PM local time (2022-05-11 01:05 UTC)
+
+About 2.1 km2 of flooding was detected outside the normal river channel.
+25 of the 60 buildings visible in this image may have water on or next to them.
+(1622 buildings were outside this image and could not be checked.)
+
+Areas affected:
+  - Hay River (other areas): 25 buildings
+
+Streets with the most affected buildings:
+  - Miron Drive: 2
+  - Wildrose Drive: 2
+  - (plus 21 near roads without a name on the map)
+
+Roads with water on them (may be impassable):
+  - Hay River Highway: about 1,207 m
+  - Miron Drive: about 786 m
+  - Fort Smith Highway: about 473 m
+  - Rose Hill: about 126 m
+  - Wildrose Drive: about 114 m
+  - Reserve Highway: about 30 m
+
+What to do: if you are in these areas, move to higher ground, avoid driving through water, and follow instructions from the Town of Hay River and NWT emergency officials.
+
+This is an automated estimate from satellite radar and can miss flooding or flag dry areas. Always follow official emergency instructions.

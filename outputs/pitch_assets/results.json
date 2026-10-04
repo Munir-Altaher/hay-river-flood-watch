@@ -1,0 +1,172 @@
+{
+ "mae_7d": {
+  "model": 1.41,
+  "upstream": 1.57,
+  "climatology": 1.68
+ },
+ "springs_tested": 46,
+ "week_ahead": {
+  "flood_years": {
+   "1985": "Warning",
+   "1992": "Warning",
+   "2003": "Warning",
+   "2008": "Warning",
+   "2022": "Critical"
+  },
+  "flood_years_warning_or_higher": 5,
+  "flood_years_tested": 5,
+  "normal_springs": 32,
+  "normal_springs_warning": 10,
+  "normal_springs_critical": 0
+ },
+ "danger_window": {
+  "04-01": {
+   "years": 21,
+   "inside": 15,
+   "median_days_off_when_outside": 2.5
+  },
+  "04-15": {
+   "years": 21,
+   "inside": 17,
+   "median_days_off_when_outside": 3.5
+  }
+ },
+ "rcm_threshold": 83.7,
+ "replay_2022": {
+  "first_warning": "2022-03-08",
+  "first_high_danger": "2022-04-20",
+  "peak": "2022-05-12",
+  "peak_level_m": 170.9
+ },
+ "false_alarm_2021": {
+  "first_high_danger": "2021-03-23",
+  "peak_level_m": 168.34,
+  "flood": false
+ },
+ "rcm_2022": {
+  "min": 91.0,
+  "max": 95.3,
+  "images": 5
+ },
+ "rcm_2023": {
+  "min": 31.4,
+  "max": 76.4,
+  "images": 5
+ },
+ "blind": [
+  {
+   "site": "albany",
+   "site_label": "Albany River estuary",
+   "year": 2021,
+   "risk_level": "Low",
+   "confidence": "Very low",
+   "main_scoring": true
+  },
+  {
+   "site": "albany",
+   "site_label": "Albany River estuary",
+   "year": 2022,
+   "risk_level": "Low",
+   "confidence": "Very low",
+   "main_scoring": true
+  },
+  {
+   "site": "albany",
+   "site_label": "Albany River estuary",
+   "year": 2023,
+   "risk_level": "Low",
+   "confidence": "Very low",
+   "main_scoring": true
+  },
+  {
+   "site": "albany",
+   "site_label": "Albany River estuary",
+   "year": 2024,
+   "risk_level": "Critical",
+   "confidence": "Very low",
+   "main_scoring": true
+  },
+  {
+   "site": "albany",
+   "site_label": "Albany River estuary",
+   "year": 2025,
+   "risk_level": "Low",
+   "confidence": "Very low",
+   "main_scoring": false
+  },
+  {
+   "site": "albany",
+   "site_label": "Albany River estuary",
+   "year": 2026,
+   "risk_level": "Low",
+   "confidence": "Very low",
+   "main_scoring": false
+  },
+  {
+   "site": "fort_simpson",
+   "site_label": "Mackenzie River at Fort Simpson",
+   "year": 2021,
+   "risk_level": "Critical",
+   "confidence": "Low",
+   "main_scoring": true
+  },
+  {
+   "site": "fort_simpson",
+   "site_label": "Mackenzie River at Fort Simpson",
+   "year": 2022,
+   "risk_level": "Low",
+   "confidence": "Low",
+   "main_scoring": true
+  },
+  {
+   "site": "fort_simpson",
+   "site_label": "Mackenzie River at Fort Simpson",
+   "year": 2023,
+   "risk_level": "Warning",
+   "confidence": "Medium",
+   "main_scoring": true
+  },
+  {
+   "site": "fort_simpson",
+   "site_label": "Mackenzie River at Fort Simpson",
+   "year": 2024,
+   "risk_level": "Low",
+   "confidence": "Low",
+   "main_scoring": true
+  },
+  {
+   "site": "fort_simpson",
+   "site_label": "Mackenzie River at Fort Simpson",
+   "year": 2025,
+   "risk_level": "Low",
+   "confidence": "Very low",
+   "main_scoring": true
+  },
+  {
+   "site": "fort_simpson",
+   "site_label": "Mackenzie River at Fort Simpson",
+   "year": 2026,
+   "risk_level": "Low",
+   "confidence": "Medium",
+   "main_scoring": true
+  }
+ ],
+ "blind_locks": [
+  {
+   "file": "predictions_hay_river_fort_simpson_20261003T230653Z.csv",
+   "utc": "20261003T230653Z",
+   "sha256": "846cd925354665851f9f02772229c2b9ce232955bae97c8becf05e7cb13368e4"
+  },
+  {
+   "file": "predictions_albany_20261003T234742Z.csv",
+   "utc": "20261003T234742Z",
+   "sha256": "8fb5a192101afab72fa11be15730d5cb4e03da96db9d85a3bbb8f52a662afc9b"
+  }
+ ],
+ "blind_rules": {
+  "file": "locked_rules_20261003T230647Z.json",
+  "utc": "20261003T230647Z",
+  "sha256": "4a74207d812ec7b033ffe9613342d77fcf07067a7ecc16670eb115f2f98e24c1",
+  "threshold": 83.7
+ }
+}

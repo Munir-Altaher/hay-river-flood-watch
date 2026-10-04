@@ -1,0 +1,23 @@
+# Secrets - never upload
+.env
+
+# Python's private install and cache files
+venv/
+__pycache__/
+
+# Big downloaded/generated files (12 GB of satellite data, rebuildable with the scripts)
+data/
+models/
+
+# outputs/ IS uploaded (small): results, blind-test lock files and the pitch script.
+# The repo is PUBLIC, so copyrighted Cabin Radio flood photos stay local only:
+# the originals, the cropped copies used on the slides, and the deck that embeds them.
+outputs/pitch_assets/photos/
+outputs/pitch_assets/_*.jpg
+outputs/pitch_assets/title_bg.jpg
+outputs/Polaris_Lifeline_Pitch*.pptx
+# Font files for the deck (free to download again with scripts/80_pitch_assets.py)
+outputs/pitch_assets/fonts/
+
+# Office lock files
+~$*

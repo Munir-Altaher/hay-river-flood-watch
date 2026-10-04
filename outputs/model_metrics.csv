@@ -1,0 +1,3 @@
+method,precision,recall,F1,IoU,spring_false_alarm_pct,false_alarm_20210507_012911_16M17_pct,false_alarm_20210510_012046_16M12_pct,false_alarm_20210511_012846_16M17_pct,false_alarm_20240421_012921_16M17_pct,false_alarm_20240428_012110_16M12_pct,false_alarm_20240505_011259_16M7_pct
+random forest,0.104,0.368,0.163,0.089,1.58,1.83,1.6,0.99,1.28,1.51,2.27
+threshold (Otsu),0.091,0.154,0.114,0.06,1.71,1.83,0.78,1.52,1.22,1.48,3.43

@@ -1,0 +1,88 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hay River Breakup Watch</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-row">
+    <div>
+      <h1>Hay River Breakup Watch</h1>
+      <p>RCM satellite radar spots ice jams forming at the river mouth, before the town floods.</p>
+    </div>
+    <div class="hero-links">
+      <a class="hero-link" href="index.html">Back to the map</a>
+      <a class="hero-link" href="watch.html">Open the user view</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="compareTitle">
+    <h2 id="compareTitle">Flood year vs. normal year</h2>
+    <div class="stages" role="group" aria-label="Stage of breakup">
+      <button type="button" data-stage="before">Before peak</button>
+      <button type="button" data-stage="peak">Peak</button>
+      <button type="button" data-stage="after">After peak</button>
+    </div>
+    <div class="compare">
+      <article class="panel">
+        <header><h3 id="title2022"></h3><span class="tag tag-pos">Positive control</span></header>
+        <div class="map" id="map2022" aria-label="Map of Hay River, 2022"></div>
+        <p class="caption" id="cap2022"></p>
+      </article>
+      <article class="panel">
+        <header><h3 id="title2023"></h3><span class="tag tag-neg">Negative control</span></header>
+        <div class="map" id="map2023" aria-label="Map of Hay River, 2023"></div>
+        <p class="caption" id="cap2023"></p>
+      </article>
+    </div>
+    <ul class="legend" aria-label="Map legend">
+      <li><span class="sw sw-water"></span>Open water</li>
+      <li><span class="sw sw-smooth"></span>Smooth sheet ice</li>
+      <li><span class="sw sw-rubble"></span>Rubble / jammed ice</li>
+      <li><span class="sw sw-flood"></span>Flooded land (estimated)</li>
+    </ul>
+  </section>
+
+  <section class="card" aria-labelledby="seeTitle">
+    <h2 id="seeTitle">What we see</h2>
+    <ul id="see" class="points"></ul>
+  </section>
+
+  <section class="card" aria-labelledby="predTitle">
+    <h2 id="predTitle">Prediction</h2>
+    <p class="muted">Pick a date: the model only uses what was known that day.</p>
+    <div class="dates" id="dates" role="group" aria-label="Prediction date"></div>
+    <div class="result" id="result" aria-live="polite"></div>
+  </section>
+
+  <section class="card" aria-labelledby="blindTitle">
+    <h2 id="blindTitle">Blind test: does it work elsewhere?</h2>
+    <p class="muted">Same RCM rules on two new rivers. No retraining. Predictions were locked before any outcome was checked.</p>
+    <div class="dates" id="blindSites" role="group" aria-label="Site"></div>
+    <p class="site-line" id="blindSite"></p>
+    <div class="tablewrap"><table class="blind-table" id="blindTable"></table></div>
+    <div class="blind-chart" id="blindChart" aria-live="polite"></div>
+    <p class="lock" id="blindLock"></p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>Historical replay for a hackathon demo. Not an official forecast.
+    <a href="full/index.html">Full analysis dashboard</a></p>
+  <p class="credits">Contains RADARSAT Constellation Mission data &copy; Government of Canada. RADARSAT is an official mark of the Canadian Space Agency.
+    Gauge data: Water Survey of Canada. Elevation: NRCan HRDEM. Breakup history: GNWT (2025). Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data/demo.js"></script>
+<script src="data/blind.js"></script>
+<script src="demo.js"></script>
+<script src="blindtest.js"></script>
+</body>
+</html>

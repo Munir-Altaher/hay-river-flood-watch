@@ -1,0 +1,41 @@
+FLOOD WARNING - Hay River, NWT
+Satellite radar image: Thursday May 12, 2022 at 07:21 PM local time (2022-05-13 01:21 UTC)
+
+About 3.2 km2 of flooding was detected outside the normal river channel.
+182 of the 1121 buildings visible in this image may have water on or next to them.
+(561 buildings were outside this image and could not be checked.)
+
+Areas affected:
+  - New Town Hay River: 68 buildings
+  - Old Town Hay River: 56 buildings
+  - Hay River (other areas): 47 buildings
+  - Vale Island: 11 buildings
+
+Streets with the most affected buildings:
+  - Hay River Highway: 33
+  - Industrial Drive: 12
+  - Service Road: 10
+  - Wolf Dr: 10
+  - Woodland Drive: 8
+  - Cranberry Crescent: 8
+  - 101st Street: 7
+  - Lakeshore Drive: 6
+  - 102nd Avenue: 6
+  - 106 Street: 5
+  - (plus 22 near roads without a name on the map)
+
+Roads with water on them (may be impassable):
+  - Hay River Highway: about 2,384 m
+  - 102nd Avenue: about 406 m
+  - Service Road: about 245 m
+  - 100 Street: about 236 m
+  - Airport Rd: about 229 m
+  - Woodland Drive: about 208 m
+  - 100 Avenue: about 201 m
+  - 103rd Street: about 199 m
+  - Reserve Highway: about 194 m
+  - 106 Street: about 191 m
+
+What to do: if you are in these areas, move to higher ground, avoid driving through water, and follow instructions from the Town of Hay River and NWT emergency officials.
+
+This is an automated estimate from satellite radar and can miss flooding or flag dry areas. Always follow official emergency instructions.

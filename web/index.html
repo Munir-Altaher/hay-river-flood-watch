@@ -1,0 +1,167 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polaris Lifeline: Ice-Jam Flood Explorer</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.min.css">
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<link rel="stylesheet" href="watch.css">
+<link rel="stylesheet" href="explorer.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side" aria-label="Forecast details">
+    <header class="brand">
+      <img src="assets/polaris_side.png" alt="Polaris Lifeline" class="brand-logo">
+    </header>
+
+    <div class="sections">
+      <section class="sec sec-tools" aria-label="Choose a day">
+        <div class="dayrow">
+          <button type="button" class="tbtn" id="prev" aria-label="Previous day">&#8249;</button>
+          <input type="date" id="day" aria-label="Day">
+          <button type="button" class="tbtn" id="next" aria-label="Next day">&#8250;</button>
+        </div>
+        <div class="dayrow">
+          <button type="button" class="tbtn" id="random">Random day</button>
+          <button type="button" class="tbtn" id="today">Today</button>
+        </div>
+        <p class="timemachine">Time machine: shows what the system would have said on that day, using only data available then. Covers 2021 to today, when RCM satellite images are available.</p>
+      </section>
+
+      <section class="sec detail" id="detail" aria-live="polite"></section>
+
+      <details class="sec" id="decisionCard" open>
+        <summary>How the AI made this decision</summary>
+        <div class="sec-body">
+          <ul class="points" id="why"></ul>
+          <button type="button" class="tbtn more-btn" id="moreBtn" aria-expanded="false" aria-controls="analysis">Show full analysis</button>
+          <div id="analysis" class="analysis" hidden></div>
+        </div>
+      </details>
+
+      <details class="sec" id="whyCard" open>
+        <summary>Places that may be affected</summary>
+        <div class="sec-body">
+          <p class="sub" id="placesIntro"></p>
+          <div class="places" id="places"></div>
+        </div>
+      </details>
+
+      <details class="sec">
+        <summary>About and credits</summary>
+        <div class="sec-body credits">
+          <p>Hay River uses real data and a model that never saw the year shown. Fort Simpson and the Albany River show locked blind-test predictions (one per spring, outcomes not checked yet). All other sites are simulated examples. Not an official forecast.</p>
+          <p>Contains RADARSAT Constellation Mission data &copy; Government of Canada. RADARSAT is an official mark of the Canadian Space Agency.
+            Gauge data: Water Survey of Canada (2025 and 2026 provisional). Climate: Environment and Climate Change Canada. Elevation: NRCan HRDEM.
+            Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors.</p>
+        </div>
+      </details>
+    </div>
+
+    <footer class="side-foot">
+      <a class="btn btn-primary" href="how-it-works.html">How the model works</a>
+      <a class="btn" href="watch.html">Classic user view</a>
+    </footer>
+  </aside>
+
+  <main class="mapwrap">
+    <div id="zoom" aria-label="Map: zoom out for all sites, zoom in on Hay River for places at risk"></div>
+
+    <div class="mapchip">
+      <img src="assets/polaris_star.png" alt="" class="chip-star">
+      <span class="when-detail" id="zoomCap"></span>
+      <span class="when-summary">All sites. Click a dot for its forecast, or zoom in on Hay River.</span>
+    </div>
+
+    <div class="tools" role="toolbar" aria-label="Map tools">
+      <button type="button" class="tool" id="zoomIn" title="Zoom in" aria-label="Zoom in">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button type="button" class="tool" id="zoomOut" title="Zoom out" aria-label="Zoom out">
+        <svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+      <button type="button" class="tool" id="home" title="Hay River" aria-label="Zoom to Hay River">
+        <svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7M6 9.5V20h12V9.5"/></svg></button>
+      <button type="button" class="tool" id="allSites" title="All sites (Canada)" aria-label="Show all sites">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z"/></svg></button>
+      <span class="tool-gap"></span>
+      <button type="button" class="tool" id="legendBtn" title="Legend" aria-label="Legend" aria-expanded="true" aria-controls="legend">
+        <svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></svg></button>
+      <button type="button" class="tool" id="fullBtn" title="Full screen" aria-label="Full screen">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg></button>
+      <span class="tool-gap"></span>
+      <a class="tool" href="how-it-works.html" title="How the model works" aria-label="How the model works">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.6M12 16.6v.4"/></svg></a>
+    </div>
+
+    <div class="mlegend" id="legend">
+      <!-- Zoomed out: Canada summary -->
+      <div class="when-summary">
+        <div class="lg-group">
+          <h4>Flood risk on the chosen day</h4>
+          <div class="lg-scale">
+            <span><i class="lg-dot" style="background:#2e7d4f"></i>Safe</span>
+            <span><i class="lg-dot" style="background:#f2b705"></i>Possible</span>
+            <span><i class="lg-dot" style="background:#eb2d37"></i>High danger</span>
+            <span><i class="lg-dot" style="background:#9aa5b1"></i>No prediction</span>
+          </div>
+        </div>
+        <div class="lg-group">
+          <h4>Type of site</h4>
+          <ul>
+            <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="#26374a" stroke-width="2"/></svg>Hay River: real data, daily forecast</li>
+            <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="#26374a" stroke-width="4"/></svg>Blind test: one locked prediction per spring</li>
+            <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#fff" stroke="#5d6b79" stroke-width="2" stroke-dasharray="3 3"/></svg>Simulated example (not monitored yet)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Zoomed in: Hay River -->
+      <div class="when-detail">
+        <div class="lg-group">
+          <h4>River ice from RCM</h4>
+          <ul>
+            <li><i class="lg-sw" style="background:#1f6fbf"></i>Open water</li>
+            <li><i class="lg-sw" style="background:#aedcf0"></i>Smooth sheet ice</li>
+            <li><i class="lg-sw" style="background:#7b3fbf"></i>Rubble / jammed ice</li>
+          </ul>
+        </div>
+        <div class="lg-group">
+          <h4>Flooding</h4>
+          <ul>
+            <li><i class="lg-sw" style="background:rgba(0,150,170,0.5);border-color:#00838f"></i>Flooded land (estimated)</li>
+            <li><svg class="lg-sym" viewBox="0 0 24 24"><path d="M2 12h20" stroke="#26374a" stroke-width="2.5" stroke-dasharray="5 4"/></svg>Jam zone (lake to town)</li>
+          </ul>
+        </div>
+        <div class="lg-group">
+          <h4>Flood risk on the chosen day</h4>
+          <div class="lg-scale">
+            <span><i class="lg-dot" style="background:#eb2d37"></i>High danger</span>
+            <span><i class="lg-dot" style="background:#f2b705"></i>Possible</span>
+            <span><i class="lg-dot" style="background:#2e7d4f"></i>Safe</span>
+          </div>
+          <p class="lg-note">Colours the buildings, the place dots and the ring around each facility.</p>
+        </div>
+        <div class="lg-group">
+          <h4>Symbols</h4>
+          <ul>
+            <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#9aa5b1" stroke="#26374a" stroke-width="2"/></svg>Neighbourhood or route (click for details)</li>
+            <li><span class="lg-ficon">H</span>Facility: H hospital, + health centre, S school, F fire hall, P RCMP, C community centre, A airport, G fuel, T town hall</li>
+            <li><i class="lg-sw" style="background:#d5dae0;border-color:#8a96a3"></i>Building not at risk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="vendor/leaflet/leaflet.min.js"></script>
+<script src="data/watch.js"></script>
+<script src="data/blind.js"></script>
+<script src="data/places.js"></script>
+<script src="data/buildings.js"></script>
+<script src="watch.js"></script>
+<script src="explorer.js"></script>
+</body>
+</html>

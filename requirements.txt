@@ -1,0 +1,6 @@
+py-eodms-rapi
+python-dotenv
+pandas
+rasterio
+geopandas
+shapely

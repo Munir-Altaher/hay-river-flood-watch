@@ -1,0 +1,131 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Breakup Watch Canada</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="demo.css">
+<link rel="stylesheet" href="watch.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap hero-row">
+    <div>
+      <h1>Breakup Watch Canada</h1>
+      <p>Early warning for ice-jam floods, from RCM satellite radar and river data.</p>
+    </div>
+    <div class="hero-links">
+      <a class="hero-link" href="index.html">Map explorer</a>
+      <a class="hero-link" href="how-it-works.html">How the model works</a>
+    </div>
+  </div>
+</header>
+
+<section class="wrap toolbar" aria-label="Choose a day">
+  <label class="field">Day
+    <input type="date" id="day">
+  </label>
+  <button type="button" class="tbtn" id="prev" aria-label="Previous day">&#9664;</button>
+  <button type="button" class="tbtn" id="next" aria-label="Next day">&#9654;</button>
+  <button type="button" class="tbtn" id="random">Random day</button>
+  <button type="button" class="tbtn" id="today">Today</button>
+  <p class="timemachine">Time machine: shows what the system would have said on that day, using only data available then. Covers 2021 to today, when RCM satellite images are available.</p>
+</section>
+
+<main class="wrap watch-grid">
+  <section class="panel">
+    <div id="canada" class="canada-map" aria-label="Map of Canada with ice-jam flood warnings"></div>
+    <div class="wlegend lg-row" aria-label="Map legend">
+      <div class="lg-group">
+        <h4>Flood risk on the chosen day</h4>
+        <div class="lg-scale">
+          <span><i class="lg-dot" style="background:#2e7d4f"></i>Safe</span>
+          <span><i class="lg-dot" style="background:#f2b705"></i>Possible</span>
+          <span><i class="lg-dot" style="background:#eb2d37"></i>High danger</span>
+          <span><i class="lg-dot" style="background:#9aa5b1"></i>No prediction</span>
+        </div>
+      </div>
+      <div class="lg-group">
+        <h4>Type of site</h4>
+        <ul>
+          <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="#26374a" stroke-width="2"/></svg>Hay River: real data, daily forecast</li>
+          <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="#fff" stroke="#26374a" stroke-width="4"/></svg>Blind test: one locked prediction per spring</li>
+          <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#fff" stroke="#5d6b79" stroke-width="2" stroke-dasharray="3 3"/></svg>Simulated example (not monitored yet)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card detail" id="detail" aria-live="polite"></section>
+
+  <section class="card wide-card" id="decisionCard">
+    <h2>How the AI made this decision</h2>
+    <ul class="points" id="why"></ul>
+    <button type="button" class="tbtn more-btn" id="moreBtn" aria-expanded="false" aria-controls="analysis">Show full analysis</button>
+    <div id="analysis" class="analysis" hidden></div>
+  </section>
+
+  <section class="card wide-card" id="whyCard">
+    <h2>Places that may be affected</h2>
+    <p class="sub" id="placesIntro"></p>
+    <div class="why-grid">
+      <div>
+        <div id="zoom" class="zoom-map" aria-label="Zoomed map of Hay River with places at risk"></div>
+        <p class="caption" id="zoomCap"></p>
+        <div class="lg-row zlegend" aria-label="Map legend">
+          <div class="lg-group">
+            <h4>River ice from RCM</h4>
+            <ul>
+              <li><i class="lg-sw" style="background:#1f6fbf"></i>Open water</li>
+              <li><i class="lg-sw" style="background:#aedcf0"></i>Smooth sheet ice</li>
+              <li><i class="lg-sw" style="background:#7b3fbf"></i>Rubble / jammed ice</li>
+            </ul>
+          </div>
+          <div class="lg-group">
+            <h4>Flooding</h4>
+            <ul>
+              <li><i class="lg-sw" style="background:rgba(0,150,170,0.5);border-color:#00838f"></i>Flooded land (estimated)</li>
+              <li><svg class="lg-sym" viewBox="0 0 24 24"><path d="M2 12h20" stroke="#26374a" stroke-width="2.5" stroke-dasharray="5 4"/></svg>Jam zone (lake to town)</li>
+            </ul>
+          </div>
+          <div class="lg-group">
+            <h4>Flood risk on the chosen day</h4>
+            <div class="lg-scale">
+              <span><i class="lg-dot" style="background:#eb2d37"></i>High danger</span>
+              <span><i class="lg-dot" style="background:#f2b705"></i>Possible</span>
+              <span><i class="lg-dot" style="background:#2e7d4f"></i>Safe</span>
+            </div>
+            <p class="lg-note">Colours the buildings, the place dots and the ring around each facility.</p>
+          </div>
+          <div class="lg-group">
+            <h4>Symbols</h4>
+            <ul>
+              <li><svg class="lg-sym" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="#9aa5b1" stroke="#26374a" stroke-width="2"/></svg>Neighbourhood or route (click for details)</li>
+              <li><span class="lg-ficon">H</span>Facility: H hospital, + health centre, S school, F fire hall, P RCMP, C community centre, A airport, G fuel, T town hall</li>
+              <li><i class="lg-sw" style="background:#d5dae0;border-color:#8a96a3"></i>Building not at risk</li>
+            </ul>
+          </div>
+        </div>
+        <p class="sub">Zoom in to see road names, building outlines and facility names. Use the layer button (top right of the map) to switch to a satellite photo or hide layers.</p>
+      </div>
+      <div class="places" id="places"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>Hay River uses real data and a model that never saw the year shown. Fort Simpson and the Albany River show locked blind-test predictions (one per spring, outcomes not checked yet). All other sites are simulated examples. Not an official forecast.</p>
+  <p class="credits">Contains RADARSAT Constellation Mission data &copy; Government of Canada. RADARSAT is an official mark of the Canadian Space Agency.
+    Gauge data: Water Survey of Canada (2025 and 2026 provisional). Climate: Environment and Climate Change Canada. Elevation: NRCan HRDEM.
+    Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data/watch.js"></script>
+<script src="data/blind.js"></script>
+<script src="data/places.js"></script>
+<script src="data/buildings.js"></script>
+<script src="watch.js"></script>
+</body>
+</html>
